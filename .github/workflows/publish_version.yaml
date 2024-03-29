@@ -56,3 +56,8 @@ jobs:
         files: |
           LICENSE
           dist/* 
+
+    - name: Publish to golang
+      run: sh publish.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
