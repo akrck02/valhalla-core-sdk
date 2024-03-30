@@ -36,7 +36,7 @@ jobs:
 
     - name: Read version
       id: version
-      run: echo ::set-output name=version::$(cat version.txt)
+      run: echo ::set-output name=version::$(cat version.config)
 
     - name: Set up Go
       uses: actions/setup-go@v3
