@@ -5,7 +5,7 @@ name: publish-version
 
 on: 
   push:
-    branches: "main, feature/ci-publish"
+    branches:  ["main","feature/ci-publish"]
   
 jobs:
 
