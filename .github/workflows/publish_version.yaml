@@ -56,8 +56,3 @@ jobs:
             ref: 'refs/tags/${{ steps.version.outputs.version }}',
             sha: context.sha
           })
-
-    - name: Publish to golang
-      run: sh publish.sh
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
