@@ -11,7 +11,7 @@ const MINIMUM_CHARACTERS_FOR_PASSWORD = 16
 const MINIMUM_CHARACTERS_FOR_EMAIL = 5
 
 type validateResult struct {
-	Response error.User
+	Response int
 	Message  string
 }
 
