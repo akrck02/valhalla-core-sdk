@@ -13,9 +13,15 @@ const titleChar = "-"
 
 var Logger = log.New(os.Stderr)
 
-func ShowLogAppTitle() {
+func ShowLogAppTitle(appName string) {
 	Line()
-	Log("               " + lang.APP_TITLE)
+
+	if appName != "" {
+		Log("               " + appName)
+	} else {
+		Log("               " + lang.APP_TITLE)
+
+	}
 	Line()
 }
 
