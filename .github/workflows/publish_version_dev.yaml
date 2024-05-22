@@ -35,6 +35,12 @@ jobs:
       id: version
       run: echo ::set-output name=version::$(cat version.config)
 
+    - name: Extract branch name
+      shell: bash
+      run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+      id: extract_branch
+
+
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
@@ -50,6 +56,6 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/${{ steps.version.outputs.version }}-${{github.sha}}',
+            ref: 'refs/tags/${{ steps.version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}',
             sha: context.sha
           })
