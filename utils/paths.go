@@ -27,3 +27,7 @@ func ExistsDir(path string) bool {
 func CreateDir(path string) error {
 	return os.MkdirAll(path, os.ModePerm)
 }
+
+func Ping() string {
+	return "Pong!"
+}
