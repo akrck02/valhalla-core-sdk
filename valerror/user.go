@@ -1,4 +1,4 @@
-package error
+package valerror
 
 type User int
 

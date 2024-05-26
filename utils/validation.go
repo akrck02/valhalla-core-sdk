@@ -3,8 +3,9 @@ package utils
 import (
 	"strings"
 
-	"github.com/akrck02/valhalla-core-sdk/error"
+	"github.com/akrck02/valhalla-core-sdk/http"
 	"github.com/akrck02/valhalla-core-sdk/lang"
+	"github.com/akrck02/valhalla-core-sdk/valerror"
 )
 
 const MINIMUM_CHARACTERS_FOR_PASSWORD = 16
@@ -29,21 +30,21 @@ func ValidateEmail(email string) validateResult {
 
 	if len(email) < MINIMUM_CHARACTERS_FOR_EMAIL {
 		return validateResult{
-			Response: error.SHORT_EMAIL,
+			Response: valerror.SHORT_EMAIL,
 			Message:  "Email must have at least " + lang.Int2String(MINIMUM_CHARACTERS_FOR_EMAIL) + " characters",
 		}
 	}
 
 	if !strings.Contains(email, "@") {
 		return validateResult{
-			Response: error.NO_AT_EMAIL,
+			Response: valerror.NO_AT_EMAIL,
 			Message:  "Email must have one @",
 		}
 	}
 
 	if !strings.Contains(email, ".") {
 		return validateResult{
-			Response: error.NO_DOT_EMAIL,
+			Response: valerror.NO_DOT_EMAIL,
 			Message:  "Email must have at least one .",
 		}
 	}
@@ -68,35 +69,35 @@ func ValidatePassword(password string) validateResult {
 
 	if len(password) < MINIMUM_CHARACTERS_FOR_PASSWORD {
 		return validateResult{
-			Response: error.SHORT_PASSWORD,
+			Response: valerror.SHORT_PASSWORD,
 			Message:  "Password must have at least " + lang.Int2String(MINIMUM_CHARACTERS_FOR_PASSWORD) + " characters",
 		}
 	}
 
 	if !ContainsSpecialCharacters(password) {
 		return validateResult{
-			Response: error.NO_SPECIAL_CHARACTERS_PASSWORD,
+			Response: valerror.NO_SPECIAL_CHARACTERS_PASSWORD,
 			Message:  "Password must have at least one special character",
 		}
 	}
 
 	if IsLowerCase(password) {
 		return validateResult{
-			Response: error.NO_UPPER_LOWER_PASSWORD,
+			Response: valerror.NO_UPPER_LOWER_PASSWORD,
 			Message:  "Password must have at least one uppercase character",
 		}
 	}
 
 	if IsUpperCase(password) {
 		return validateResult{
-			Response: error.NO_UPPER_LOWER_PASSWORD,
+			Response: valerror.NO_UPPER_LOWER_PASSWORD,
 			Message:  "Password must have at least one lowercase character",
 		}
 	}
 
 	if !ContainsNumbers(password) {
 		return validateResult{
-			Response: error.NO_ALPHANUMERIC_PASSWORD,
+			Response: valerror.NO_ALPHANUMERIC_PASSWORD,
 			Message:  "Password must have at least one number",
 		}
 	}
@@ -120,14 +121,14 @@ func ValidateName(name string) validateResult {
 
 	if len(name) < 2 {
 		return validateResult{
-			Response: error.SHORT_NAME,
+			Response: valerror.SHORT_NAME,
 			Message:  "Name must have at least 2 characters",
 		}
 	}
 
 	if len(name) > 50 {
 		return validateResult{
-			Response: error.LONG_NAME,
+			Response: valerror.LONG_NAME,
 			Message:  "Name must have at most 50 characters",
 		}
 	}
@@ -151,20 +152,20 @@ func ValidateDescription(description string) validateResult {
 
 	if len(description) < 2 {
 		return validateResult{
-			Response: error.SHORT_DESCRIPTION,
+			Response: valerror.SHORT_DESCRIPTION,
 			Message:  "Description must have at least 2 characters",
 		}
 	}
 
 	if len(description) > 500 {
 		return validateResult{
-			Response: error.LONG_DESCRIPTION,
+			Response: valerror.LONG_DESCRIPTION,
 			Message:  "Description must have at most 500 characters",
 		}
 	}
 
 	return validateResult{
-		Response: 200,
+		Response: http.HTTP_STATUS_OK,
 		Message:  "Ok.",
 	}
 }

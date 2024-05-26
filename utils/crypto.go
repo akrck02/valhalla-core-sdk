@@ -5,7 +5,9 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 
+	"github.com/akrck02/valhalla-core-sdk/http"
 	"github.com/akrck02/valhalla-core-sdk/models"
+	"github.com/akrck02/valhalla-core-sdk/valerror"
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -17,7 +19,7 @@ const OTP_CHARS = "1234567890"
 // [param] device | models.Device | The device
 //
 // [return] string | The token --> error if something went wrong
-func GenerateAuthToken(user *models.User, device *models.Device, secret string) (string, error) {
+func GenerateAuthToken(user *models.User, device *models.Device, secret string) (string, *models.Error) {
 
 	now := getCurrentMillis()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
@@ -28,7 +30,16 @@ func GenerateAuthToken(user *models.User, device *models.Device, secret string) 
 	})
 
 	tokenString, err := token.SignedString([]byte(secret))
-	return tokenString, err
+
+	if err != nil {
+		return "", &models.Error{
+			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
+			Error:   valerror.CANNOT_GENERATE_AUTH_TOKEN,
+			Message: "Error generating auth token",
+		}
+	}
+
+	return tokenString, nil
 }
 
 // Decrypt a token
@@ -36,11 +47,22 @@ func GenerateAuthToken(user *models.User, device *models.Device, secret string) 
 // [param] token | string | The token
 //
 // [return] *jwt.Token | The token --> error if something went wrong
-func DecryptToken(token string, secret string) (*jwt.Token, error) {
+func DecryptToken(token string, secret string) (*jwt.Token, *models.Error) {
 
-	return jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
+	parsed, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})
+
+	if err != nil {
+		return nil, &models.Error{
+			Status:  http.HTTP_STATUS_UNAUTHORIZED,
+			Error:   valerror.INVALID_TOKEN,
+			Message: "Invalid token",
+		}
+	}
+
+	return parsed, nil
+
 }
 
 // Encrypt a string using sha256
@@ -59,7 +81,7 @@ func EncryptSha256(text string) string {
 // [param] text | string | The text to encrypt
 //
 // [return] string | The encrypted text
-func GenerateValidationCode(text string) (string, error) {
+func GenerateValidationCode(text string) (string, *models.Error) {
 
 	// Generate a random string
 	randomString, err := GenerateOTP(20)
@@ -76,12 +98,17 @@ func GenerateValidationCode(text string) (string, error) {
 // [param] length | int | The length of the string
 //
 // [return] string | The random string --> error if something went wrong
-func GenerateOTP(length int) (string, error) {
+func GenerateOTP(length int) (string, *models.Error) {
 
 	buffer := make([]byte, length)
 	_, err := rand.Read(buffer)
 	if err != nil {
-		return "", err
+		return "", &models.Error{
+			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
+			Error:   valerror.CANNOT_CREATE_VALIDATION_CODE,
+			Message: "Error generating OTP",
+		}
+
 	}
 
 	otpCharsLength := len(OTP_CHARS)
