@@ -2,24 +2,18 @@ package valerror
 
 type Team int
 
+// 3000 --> 3999
 const (
-	NO_PERMISSION          = 800
-	TEAM_ALREADY_EXISTS    = 801
-	EMPTY_TEAM_NAME        = 802
-	NO_OWNER               = 803
-	OWNER_DOESNT_EXIST     = 804
-	BAD_OBJECT_ID          = 805
-	UPDATE_ERROR           = 806
-	TEAM_NOT_FOUND         = 807
-	SHORT_NAME             = 808
-	LONG_NAME              = 809
-	SHORT_DESCRIPTION      = 810
-	LONG_DESCRIPTION       = 811
-	EMPTY_TEAM_DESCRIPTION = 812
-	NO_MEMBER              = 813
-	NO_TEAM                = 814
-	NO_PROJECT             = 815
-	USER_IS_OWNER          = 816
-	USER_ALREADY_MEMBER    = 817
-	TEAM_SEARCH_ERROR      = 818
+	TEAM_ALREADY_EXISTS         = 3001
+	EMPTY_TEAM_NAME             = 3002
+	NO_OWNER                    = 3003
+	OWNER_DOESNT_EXIST          = 3004
+	TEAM_NOT_FOUND              = 3007
+	EMPTY_TEAM_DESCRIPTION      = 3008
+	MEMBER_PARAMETER_EMPTY      = 3009
+	TEAM_PARAMETER_EMPTY        = 3010
+	USER_ALREADY_MEMBER         = 3011
+	TEAM_SEARCH_ERROR           = 3012
+	CANNOT_DELETE_TEAM_OWNER    = 3013
+	USER_NOT_MEMBER_OF_THE_TEAM = 3014
 )
