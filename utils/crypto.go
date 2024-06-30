@@ -7,6 +7,8 @@ import (
 
 	"github.com/akrck02/valhalla-core-sdk/http"
 	"github.com/akrck02/valhalla-core-sdk/models"
+	devicemodels "github.com/akrck02/valhalla-core-sdk/models/device"
+	usersmodels "github.com/akrck02/valhalla-core-sdk/models/users"
 	"github.com/akrck02/valhalla-core-sdk/valerror"
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -19,7 +21,7 @@ const OTP_CHARS = "1234567890"
 // [param] device | models.Device | The device
 //
 // [return] string | The token --> error if something went wrong
-func GenerateAuthToken(user *models.User, device *models.Device, secret string) (string, *models.Error) {
+func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secret string) (string, *models.Error) {
 
 	now := getCurrentMillis()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{

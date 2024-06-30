@@ -1,4 +1,4 @@
-package models
+package teammodels
 
 import (
 	"go.mongodb.org/mongo-driver/bson"
