@@ -1,4 +1,4 @@
-package models
+package systemmodels
 
 type Response struct {
 	Code         int         `json:"-"`

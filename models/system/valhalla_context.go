@@ -4,4 +4,5 @@ type ValhallaContext struct {
 	Launcher    Launcher
 	Trazability Trazability
 	Database    Database
+	Request     Request
 }
