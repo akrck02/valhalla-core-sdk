@@ -1,6 +1,6 @@
 package systemmodels
 
 type Launcher struct {
-	Id           int `json:"id"`
-	LauncherType int `json:"type"`
+	Id           string `json:"id"`
+	LauncherType int    `json:"type"`
 }
