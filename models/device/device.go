@@ -1,4 +1,4 @@
-package models
+package devicemodels
 
 type Device struct {
 	User      string `bson:"user,omitempty"`

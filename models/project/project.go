@@ -1,4 +1,4 @@
-package models
+package projectmodels
 
 type Project struct {
 	ID          string   `bson:"_id,omitempty"`

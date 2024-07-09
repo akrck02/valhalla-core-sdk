@@ -1,4 +1,4 @@
-package models
+package systemmodels
 
 type Error struct {
 	Status  int    `json:"status,omitempty"`

@@ -1,4 +1,4 @@
-package models
+package usersmodels
 
 type AuthLogin struct {
 	Email     string `bson:"email,omitempty"`
