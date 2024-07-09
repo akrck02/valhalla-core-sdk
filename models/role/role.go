@@ -1,4 +1,4 @@
-package models
+package rolemodels
 
 type Role struct {
 	Name        string `bson:"name,omitempty"`
