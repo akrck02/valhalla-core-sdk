@@ -1,4 +1,4 @@
-package models
+package usersmodels
 
 import (
 	"go.mongodb.org/mongo-driver/bson"

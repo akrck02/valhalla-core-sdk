@@ -1,0 +1,17 @@
+package valerror
+
+type User int
+
+// 1000 --> 1999
+const (
+	USER_ALREADY_EXISTS       = 1000
+	USER_NOT_UPDATED          = 1001
+	USER_NOT_FOUND            = 1002
+	USER_NOT_DELETED          = 1003
+	USER_EDITING_EMAILS_EQUAL = 1005
+	EMPTY_USERNAME            = 1006
+	EMPTY_USER_PASSWORD       = 1007
+	EMPTY_USER_EMAIL          = 1008
+	USER_ALREADY_VALIDATED    = 1009
+	USER_NOT_AUTHORIZED       = 1010
+)
