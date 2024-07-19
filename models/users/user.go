@@ -12,6 +12,8 @@ type User struct {
 	ValidationCode string `bson:"validation_code,omitempty"`
 	ProfilePic     string `bson:"profile_pic,omitempty"`
 	ID             string `bson:"_id,omitempty"`
+	CreationDate   int64  `bson:"creationdate,omitempty"`
+	LastUpdate     int64  `bson:"updatedate,omitempty"`
 }
 
 func (u *User) Clone() *User {
@@ -23,6 +25,8 @@ func (u *User) Clone() *User {
 		ValidationCode: u.ValidationCode,
 		ProfilePic:     u.ProfilePic,
 		ID:             u.ID,
+		CreationDate:   u.CreationDate,
+		LastUpdate:     u.LastUpdate,
 	}
 }
 
