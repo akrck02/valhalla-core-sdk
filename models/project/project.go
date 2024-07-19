@@ -1,6 +1,8 @@
 package projectmodels
 
 type Project struct {
+	CreationDate *int64   `bson:"creationdate,omitempty"`
+	LastUpdate   *int64   `bson:"updatedate,omitempty"`
 	ID           string   `bson:"_id,omitempty"`
 	Name         string   `bson:"name,omitempty"`
 	Description  string   `bson:"description,omitempty"`
@@ -9,6 +11,4 @@ type Project struct {
 	Wikis        []string `bson:"wikis,omitempty"`
 	Notes        []string `bson:"notes,omitempty"`
 	Tasks        []string `bson:"tasks,omitempty"`
-	CreationDate int64    `bson:"creationdate,omitempty"`
-	LastUpdate   int64    `bson:"updatedate,omitempty"`
 }

@@ -5,6 +5,8 @@ import (
 )
 
 type User struct {
+	CreationDate   *int64 `bson:"creationdate,omitempty"`
+	LastUpdate     *int64 `bson:"updatedate,omitempty"`
 	Email          string `bson:"email,omitempty"`
 	Password       string `bson:"password,omitempty"`
 	Username       string `bson:"username,omitempty"`
@@ -12,12 +14,12 @@ type User struct {
 	ValidationCode string `bson:"validation_code,omitempty"`
 	ProfilePic     string `bson:"profile_pic,omitempty"`
 	ID             string `bson:"_id,omitempty"`
-	CreationDate   int64  `bson:"creationdate,omitempty"`
-	LastUpdate     int64  `bson:"updatedate,omitempty"`
 }
 
 func (u *User) Clone() *User {
 	return &User{
+		CreationDate:   u.CreationDate,
+		LastUpdate:     u.LastUpdate,
 		Email:          u.Email,
 		Password:       u.Password,
 		Username:       u.Username,
@@ -25,8 +27,6 @@ func (u *User) Clone() *User {
 		ValidationCode: u.ValidationCode,
 		ProfilePic:     u.ProfilePic,
 		ID:             u.ID,
-		CreationDate:   u.CreationDate,
-		LastUpdate:     u.LastUpdate,
 	}
 }
 
