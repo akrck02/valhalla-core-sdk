@@ -23,7 +23,7 @@ const OTP_CHARS = "1234567890"
 // [return] string | The token --> error if something went wrong
 func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secret string) (string, *systemmodels.Error) {
 
-	now := getCurrentMillis()
+	now := GetCurrentMillis()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"device":    device.UserAgent + "-" + device.Address,
 		"username":  user.Username,

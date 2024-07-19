@@ -4,6 +4,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 
 versionstring="$version-$date-$branch"
 echo "Publishing version $versionstring"
+echo ""
 
 # Build the project
 git tag -a $versionstring -m "Release $versionstring"
