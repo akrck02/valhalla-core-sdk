@@ -1,4 +1,4 @@
-package systemmodels
+package apimodels
 
 type LauncherType int
 

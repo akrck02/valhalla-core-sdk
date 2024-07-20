@@ -2,7 +2,7 @@ package utils
 
 import "time"
 
-func getCurrentMillis() int64 {
+func GetCurrentMillis() int64 {
 	return time.Now().UnixMilli()
 }
 
