@@ -9,8 +9,8 @@ type Endpoint struct {
 	Database bool             `json:"-"`
 }
 
-type EndpointCheck func(context *APIContext) *Error
-type EndpointListener func(context *APIContext) (*Response, *Error)
+type EndpointCheck func(context *ApiContext) *Error
+type EndpointListener func(context *ApiContext) (*Response, *Error)
 
 func EndpointFrom(path string, method int, listener EndpointListener, checks EndpointCheck, secured bool, database bool) Endpoint {
 	return Endpoint{
