@@ -1,6 +1,6 @@
 package systemmodels
 
 type Trazability struct {
-	Method    string `json:"method"`
+	Endpoint  string `json:"endpoint"`
 	Timestamp string `json:"timestamp"`
 }

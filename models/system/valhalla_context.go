@@ -5,4 +5,5 @@ type ValhallaContext struct {
 	Trazability Trazability
 	Database    Database
 	Request     Request
+	Response    Response
 }
