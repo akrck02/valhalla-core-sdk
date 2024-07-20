@@ -6,8 +6,8 @@ import (
 	"encoding/hex"
 
 	"github.com/akrck02/valhalla-core-sdk/http"
+	apimodels "github.com/akrck02/valhalla-core-sdk/models/api"
 	devicemodels "github.com/akrck02/valhalla-core-sdk/models/device"
-	systemmodels "github.com/akrck02/valhalla-core-sdk/models/system"
 	usersmodels "github.com/akrck02/valhalla-core-sdk/models/users"
 	"github.com/akrck02/valhalla-core-sdk/valerror"
 	"github.com/golang-jwt/jwt/v5"
@@ -15,13 +15,7 @@ import (
 
 const OTP_CHARS = "1234567890"
 
-// Generate a new auth token
-//
-// [param] user | models.User | The user
-// [param] device | models.Device | The device
-//
-// [return] string | The token --> error if something went wrong
-func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secret string) (string, *systemmodels.Error) {
+func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secret string) (string, *apimodels.Error) {
 
 	now := GetCurrentMillis()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
@@ -34,7 +28,7 @@ func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secr
 	tokenString, err := token.SignedString([]byte(secret))
 
 	if err != nil {
-		return "", &systemmodels.Error{
+		return "", &apimodels.Error{
 			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
 			Error:   valerror.CANNOT_GENERATE_AUTH_TOKEN,
 			Message: "Error generating auth token",
@@ -44,19 +38,14 @@ func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secr
 	return tokenString, nil
 }
 
-// Decrypt a token
-//
-// [param] token | string | The token
-//
-// [return] *jwt.Token | The token --> error if something went wrong
-func DecryptToken(token string, secret string) (*jwt.Token, *systemmodels.Error) {
+func DecryptToken(token string, secret string) (*jwt.Token, *apimodels.Error) {
 
 	parsed, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})
 
 	if err != nil {
-		return nil, &systemmodels.Error{
+		return nil, &apimodels.Error{
 			Status:  http.HTTP_STATUS_UNAUTHORIZED,
 			Error:   valerror.INVALID_TOKEN,
 			Message: "Invalid token",
@@ -67,23 +56,13 @@ func DecryptToken(token string, secret string) (*jwt.Token, *systemmodels.Error)
 
 }
 
-// Encrypt a string using sha256
-//
-// [param] text | string | The text to encrypt
-//
-// [return] string | The encrypted text
 func EncryptSha256(text string) string {
 	plainText := []byte(text)
 	sha256Hash := sha256.Sum256(plainText)
 	return hex.EncodeToString(sha256Hash[:])
 }
 
-// Generate a validation code
-//
-// [param] text | string | The text to encrypt
-//
-// [return] string | The encrypted text
-func GenerateValidationCode(text string) (string, *systemmodels.Error) {
+func GenerateValidationCode(text string) (string, *apimodels.Error) {
 
 	// Generate a random string
 	randomString, err := GenerateOTP(20)
@@ -95,17 +74,12 @@ func GenerateValidationCode(text string) (string, *systemmodels.Error) {
 	return randomString + EncryptSha256(text), nil
 }
 
-// Generate a random string
-//
-// [param] length | int | The length of the string
-//
-// [return] string | The random string --> error if something went wrong
-func GenerateOTP(length int) (string, *systemmodels.Error) {
+func GenerateOTP(length int) (string, *apimodels.Error) {
 
 	buffer := make([]byte, length)
 	_, err := rand.Read(buffer)
 	if err != nil {
-		return "", &systemmodels.Error{
+		return "", &apimodels.Error{
 			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
 			Error:   valerror.CANNOT_CREATE_VALIDATION_CODE,
 			Message: "Error generating OTP",
