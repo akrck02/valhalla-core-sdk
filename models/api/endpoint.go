@@ -1,9 +1,5 @@
 package apimodels
 
-import (
-	systemmodels "github.com/akrck02/valhalla-core-sdk/models/system"
-)
-
 type Endpoint struct {
 	Path     string           `json:"path"`
 	Method   int              `json:"method"`
@@ -13,8 +9,8 @@ type Endpoint struct {
 	Database bool             `json:"-"`
 }
 
-type EndpointCheck func(context *systemmodels.ValhallaContext) *systemmodels.Error
-type EndpointListener func(context *systemmodels.ValhallaContext) (*systemmodels.Response, *systemmodels.Error)
+type EndpointCheck func(context *APIContext) *Error
+type EndpointListener func(context *APIContext) (*Response, *Error)
 
 func EndpointFrom(path string, method int, listener EndpointListener, checks EndpointCheck, secured bool, database bool) Endpoint {
 	return Endpoint{

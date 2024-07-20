@@ -1,4 +1,4 @@
-package systemmodels
+package apimodels
 
 import (
 	usersmodels "github.com/akrck02/valhalla-core-sdk/models/users"
