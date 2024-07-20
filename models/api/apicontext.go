@@ -3,7 +3,6 @@ package apimodels
 import "github.com/akrck02/valhalla-core-sdk/models/database"
 
 type ApiContext struct {
-	Launcher    Launcher
 	Trazability Trazability
 	Database    database.Database
 	Request     Request
