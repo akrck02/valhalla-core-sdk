@@ -1,16 +1,12 @@
 package utils
 
 import (
+	"encoding/json"
 	"errors"
+	"io"
 	"os"
 )
 
-// ReadFile reads a file and returns its content
-//
-// [param] filepath | string : path to the file
-// [param] content | []byte : content of the file
-//
-// [return] []byte : content of the file
 func SaveFile(filepath string, content []byte) error {
 
 	file, err := os.Create(filepath)
@@ -32,12 +28,6 @@ func SaveFile(filepath string, content []byte) error {
 	return nil
 }
 
-// ReadFile reads a file and returns its content
-//
-// [param] filepath | string : path to the file
-// [param] content | []byte : content of the file
-//
-// [return] []byte : content of the file
 func ReadFile(filepath string) ([]byte, error) {
 
 	file, err := os.Open(filepath)
@@ -63,4 +53,14 @@ func ReadFile(filepath string) ([]byte, error) {
 	}
 
 	return buffer, nil
+}
+
+func ParseJson[T interface{}](body io.Reader, object *T) error {
+
+	err := json.NewDecoder(body).Decode(object)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
