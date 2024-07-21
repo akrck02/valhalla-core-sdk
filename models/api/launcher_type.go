@@ -3,6 +3,6 @@ package apimodels
 type LauncherType int
 
 const (
-	AUTOMATED = 0
-	USER      = 1
+	AUTOMATED LauncherType = iota
+	USER
 )

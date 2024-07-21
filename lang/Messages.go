@@ -5,8 +5,6 @@ import (
 	"strings"
 )
 
-const APP_TITLE = "Valhalla Core - chocolate version"
-
 func Format(message string, args ...string) string {
 	var i int
 
