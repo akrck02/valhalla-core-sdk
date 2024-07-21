@@ -4,12 +4,14 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
+	"net/http"
 
-	"github.com/akrck02/valhalla-core-sdk/http"
+	apierror "github.com/akrck02/valhalla-core-sdk/error"
+
 	apimodels "github.com/akrck02/valhalla-core-sdk/models/api"
 	devicemodels "github.com/akrck02/valhalla-core-sdk/models/device"
 	usersmodels "github.com/akrck02/valhalla-core-sdk/models/users"
-	"github.com/akrck02/valhalla-core-sdk/valerror"
+
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -29,8 +31,8 @@ func GenerateAuthToken(user *usersmodels.User, device *devicemodels.Device, secr
 
 	if err != nil {
 		return "", &apimodels.Error{
-			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
-			Error:   valerror.CANNOT_GENERATE_AUTH_TOKEN,
+			Status:  http.StatusInternalServerError,
+			Error:   apierror.CannotGenerateAuthToken,
 			Message: "Error generating auth token",
 		}
 	}
@@ -46,8 +48,8 @@ func DecryptToken(token string, secret string) (*jwt.Token, *apimodels.Error) {
 
 	if err != nil {
 		return nil, &apimodels.Error{
-			Status:  http.HTTP_STATUS_UNAUTHORIZED,
-			Error:   valerror.INVALID_TOKEN,
+			Status:  http.StatusUnauthorized,
+			Error:   apierror.InvalidToken,
 			Message: "Invalid token",
 		}
 	}
@@ -80,8 +82,8 @@ func GenerateOTP(length int) (string, *apimodels.Error) {
 	_, err := rand.Read(buffer)
 	if err != nil {
 		return "", &apimodels.Error{
-			Status:  http.HTTP_STATUS_INTERNAL_SERVER_ERROR,
-			Error:   valerror.CANNOT_CREATE_VALIDATION_CODE,
+			Status:  http.StatusInternalServerError,
+			Error:   apierror.CannotCreateValidationCode,
 			Message: "Error generating OTP",
 		}
 

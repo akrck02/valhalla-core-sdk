@@ -15,13 +15,7 @@ var Logger = log.New(os.Stderr)
 
 func ShowLogAppTitle(appName string) {
 	Line()
-
-	if appName != "" {
-		Log("               " + appName)
-	} else {
-		Log("               " + lang.APP_TITLE)
-
-	}
+	Log("               " + appName)
 	Line()
 }
 
