@@ -28,6 +28,7 @@ const (
 	ShortDescription
 	LongDescription
 	UpdateParametersEqual
+	UnsupportedOperation
 )
 
 // 1000 --> 1999 | USER ERRORS
