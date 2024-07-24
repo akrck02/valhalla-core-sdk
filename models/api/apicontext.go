@@ -6,5 +6,5 @@ type ApiContext struct {
 	Trazability Trazability
 	Database    database.Database
 	Request     Request
-	Response    Response
+	Response    interface{}
 }
