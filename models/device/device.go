@@ -13,13 +13,6 @@ type Device struct {
 }
 
 func (d *Device) Default() {
-	d.Id = ""
-	d.CreationDate = nil
-	d.LastUpdate = nil
-	d.User = ""
-	d.Address = ""
-	d.UserAgent = ""
-	d.Token = ""
 }
 
 func (d *Device) Clone() *Device {

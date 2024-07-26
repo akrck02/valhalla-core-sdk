@@ -16,16 +16,22 @@ type Project struct {
 }
 
 func (p *Project) Default() {
-	p.CreationDate = nil
-	p.LastUpdate = nil
-	p.Id = ""
-	p.Name = ""
-	p.Description = ""
-	p.Owner = ""
-	p.Teams = []string{}
-	p.Wikis = []string{}
-	p.Notes = []string{}
-	p.Tasks = []string{}
+
+	if p.Teams == nil {
+		p.Teams = []string{}
+	}
+
+	if p.Wikis == nil {
+		p.Wikis = []string{}
+	}
+
+	if p.Notes == nil {
+		p.Notes = []string{}
+	}
+
+	if p.Tasks == nil {
+		p.Tasks = []string{}
+	}
 }
 
 func (p *Project) Clone() *Project {

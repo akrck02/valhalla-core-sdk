@@ -11,13 +11,10 @@ type Role struct {
 }
 
 func (r *Role) Default() {
-	r.Id = ""
-	r.CreationDate = nil
-	r.LastUpdate = nil
-	r.Name = ""
-	r.Description = ""
-	r.Team = ""
-	r.Permissions = []int{}
+
+	if r.Permissions == nil {
+		r.Permissions = []int{}
+	}
 }
 
 func (r *Role) Clone() *Role {

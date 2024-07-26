@@ -17,15 +17,7 @@ type User struct {
 }
 
 func (u *User) Default() {
-	u.CreationDate = nil
-	u.LastUpdate = nil
-	u.Email = ""
-	u.Password = ""
-	u.Username = ""
-	u.Validated = false
-	u.ValidationCode = ""
-	u.ProfilePic = ""
-	u.Id = ""
+
 }
 
 func (u *User) Clone() *User {

@@ -17,15 +17,14 @@ type Team struct {
 }
 
 func (t *Team) Default() {
-	t.CreationDate = nil
-	t.LastUpdate = nil
-	t.Name = ""
-	t.Description = ""
-	t.ProfilePic = ""
-	t.Projects = []string{}
-	t.Owner = ""
-	t.Members = []string{}
-	t.Id = ""
+
+	if t.Projects == nil {
+		t.Projects = []string{}
+	}
+
+	if t.Members == nil {
+		t.Members = []string{}
+	}
 }
 
 func (t *Team) Clone() *Team {
