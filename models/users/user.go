@@ -13,7 +13,19 @@ type User struct {
 	Validated      bool   `bson:"validated"`
 	ValidationCode string `bson:"validation_code,omitempty"`
 	ProfilePic     string `bson:"profile_pic,omitempty"`
-	ID             string `bson:"_id,omitempty"`
+	Id             string `bson:"_id,omitempty"`
+}
+
+func (u *User) Default() {
+	u.CreationDate = nil
+	u.LastUpdate = nil
+	u.Email = ""
+	u.Password = ""
+	u.Username = ""
+	u.Validated = false
+	u.ValidationCode = ""
+	u.ProfilePic = ""
+	u.Id = ""
 }
 
 func (u *User) Clone() *User {
@@ -26,41 +38,49 @@ func (u *User) Clone() *User {
 		Validated:      u.Validated,
 		ValidationCode: u.ValidationCode,
 		ProfilePic:     u.ProfilePic,
-		ID:             u.ID,
+		Id:             u.Id,
 	}
 }
 
-func (u *User) PurgedBson() bson.M {
+func (u *User) Bson(hideId bool) bson.M {
 
-	purgedBson := bson.M{}
+	bsonMap := bson.M{}
 
 	if u.Email != "" {
-		purgedBson["email"] = u.Email
+		bsonMap["email"] = u.Email
 	}
 
 	if u.Password != "" {
-		purgedBson["password"] = u.Password
+		bsonMap["password"] = u.Password
 	}
 
 	if u.Username != "" {
-		purgedBson["username"] = u.Username
+		bsonMap["username"] = u.Username
 	}
 
 	if u.Validated {
-		purgedBson["validated"] = u.Validated
+		bsonMap["validated"] = u.Validated
 	}
 
 	if u.ValidationCode != "" {
-		purgedBson["validation_code"] = u.ValidationCode
+		bsonMap["validation_code"] = u.ValidationCode
 	}
 
 	if u.ProfilePic != "" {
-		purgedBson["profile_pic"] = u.ProfilePic
+		bsonMap["profile_pic"] = u.ProfilePic
 	}
 
-	if u.ID != "" {
-		purgedBson["_id"] = u.ID
+	if !hideId && u.Id != "" {
+		bsonMap["_id"] = u.Id
 	}
 
-	return purgedBson
+	if u.LastUpdate != nil {
+		bsonMap["updatedate"] = u.LastUpdate
+	}
+
+	if u.CreationDate != nil {
+		bsonMap["creationdate"] = u.CreationDate
+	}
+
+	return bsonMap
 }

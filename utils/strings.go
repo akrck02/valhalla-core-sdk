@@ -59,7 +59,7 @@ func ContainsSpecialCharacters(str string) bool {
 //
 // [return] bool: true if the string is empty
 func IsEmpty(str string) bool {
-	return str == ""
+	return str == "" || len(str) == 0
 }
 
 // StringToObjectId converts a string to a primitive.ObjectID

@@ -13,7 +13,19 @@ type Team struct {
 	Projects     []string `bson:"projects,omitempty"`
 	Owner        string   `bson:"owner,omitempty"`
 	Members      []string `bson:"members,omitempty"`
-	ID           string   `bson:"_id,omitempty"`
+	Id           string   `bson:"_id,omitempty"`
+}
+
+func (t *Team) Default() {
+	t.CreationDate = nil
+	t.LastUpdate = nil
+	t.Name = ""
+	t.Description = ""
+	t.ProfilePic = ""
+	t.Projects = []string{}
+	t.Owner = ""
+	t.Members = []string{}
+	t.Id = ""
 }
 
 func (t *Team) Clone() *Team {
@@ -26,11 +38,11 @@ func (t *Team) Clone() *Team {
 		Projects:     t.Projects,
 		Owner:        t.Owner,
 		Members:      t.Members,
-		ID:           t.ID,
+		Id:           t.Id,
 	}
 }
 
-func (t *Team) PurgedBson(hideID bool) bson.M {
+func (t *Team) Bson(hideID bool) bson.M {
 
 	purgedBson := bson.M{}
 
@@ -50,8 +62,16 @@ func (t *Team) PurgedBson(hideID bool) bson.M {
 		purgedBson["owner"] = t.Owner
 	}
 
-	if !hideID && t.ID != "" {
-		purgedBson["_id"] = t.ID
+	if !hideID && t.Id != "" {
+		purgedBson["_id"] = t.Id
+	}
+
+	if len(t.Projects) > 0 {
+		purgedBson["projects"] = t.Projects
+	}
+
+	if len(t.Members) > 0 {
+		purgedBson["members"] = t.Members
 	}
 
 	return purgedBson
