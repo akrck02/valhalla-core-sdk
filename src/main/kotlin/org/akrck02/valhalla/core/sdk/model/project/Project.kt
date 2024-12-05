@@ -8,14 +8,14 @@ import java.time.LocalDateTime
  * This class represent a project in the app
  */
 @Suppress("unused")
-data class Project(val id: String?) {
+data class Project(
+    val id: String?,
+    var name: String? = null,
+    var description: String? = null,
+    var owner: User? = null,
 
-    var name: String? = null
-    var description: String? = null
-    var owner: User? = null
+    var teams: MutableList<Team> = mutableListOf(),
 
-    var teams: MutableList<Team> = mutableListOf()
-
-    var creationTime: LocalDateTime? = null
+    var creationTime: LocalDateTime? = null,
     var updateTime: LocalDateTime? = null
-}
+)
