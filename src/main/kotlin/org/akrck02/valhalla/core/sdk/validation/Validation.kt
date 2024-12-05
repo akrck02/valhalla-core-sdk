@@ -114,5 +114,18 @@ fun String.isAlphanumeric(): Boolean {
  * @return true if it is, false otherwise
  */
 fun String.containsSpecialCharacters(): Boolean {
-    return this.matches(Regex("^(?=.*[@#\$%^&+=])"))
+
+    return this.contains("@") ||
+            this.contains("#") ||
+            this.contains("?") ||
+            this.contains("¿") ||
+            this.contains("$") ||
+            this.contains("*") ||
+            this.contains("%") ||
+            this.contains("&") ||
+            this.contains("+") ||
+            this.contains("-")
+
+
+   // return this.matches(Regex("^(?=.*[@#\$*%^&+=])"))
 }
