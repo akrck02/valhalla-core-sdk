@@ -1,7 +1,6 @@
 package org.akrck02.valhalla.core.sdk.model.device
 
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.akrck02.valhalla.core.sdk.model.user.User
 
 /**
@@ -9,12 +8,11 @@ import org.akrck02.valhalla.core.sdk.model.user.User
  * and the corresponding token
  */
 @Suppress("unused")
+@Serializable
 data class Device(
-
-    @SerialName("_id") @Contextual var id: String? = null,
-
+    var id: String? = null,
     var user: User? = null,
     var address: String? = null,
     var userAgent: String? = null,
-    var token: String? = null,
+    var token: String? = null
 )
