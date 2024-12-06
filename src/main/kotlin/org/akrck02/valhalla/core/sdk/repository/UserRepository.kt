@@ -14,41 +14,41 @@ interface UserRepository {
      * Register a user
      * @param user The user to register
      */
-    fun register(user: User ?)
+    suspend fun register(user: User ?)
 
     /**
      * Get the user by id
      * @param id The user id
      * @return The requested user
      */
-    fun get(id : String ?) : User ?
+    suspend fun get(id : String ?) : User ?
 
     /**
      * Get the user by email
      * @param email The user email
      * @return The requested user
      */
-    fun getByEmail(email : String ?) : User ?
+    suspend fun getByEmail(email : String ?) : User ?
 
     /**
      * Update the user data
      * @param id The user id
      * @param user The new user data
      */
-    fun update(id : String ?, user: User ?)
+    suspend fun update(id : String ?, user: User ?)
 
     /**
      * Update the profile picture for a user
      * @param id The user id
      * @param picture The profile picture to be set
      */
-    fun updateProfilePicture(id : String ?, picture : ByteArray ?)
+    suspend fun updateProfilePicture(id : String ?, picture : ByteArray ?)
 
     /**
      * Delete the user
      * @param id
      */
-    fun delete(id : String ?)
+    suspend fun delete(id : String ?)
 
     /**
      * Login with a user in the service
@@ -56,7 +56,7 @@ interface UserRepository {
      * @param device The device that the user is using
      * @return The auth token
      */
-    fun login(user: User ?, device : Device ?) : String?
+    suspend fun login(user: User ?, device : Device ?) : String?
 
     /**
      * Login the platform with the auth token representing
@@ -64,11 +64,11 @@ interface UserRepository {
      * @param id The id of user that wants to log in
      * @param token The auth token used
      */
-    fun loginWithAuth(id: String ?, token : String ?)
+    suspend fun loginWithAuth(id: String ?, token : String ?)
 
     /**
      * Validate the user account
      * @param code The validation code
      */
-    fun validateAccount(code : String?)
+    suspend fun validateAccount(code : String?)
 }
