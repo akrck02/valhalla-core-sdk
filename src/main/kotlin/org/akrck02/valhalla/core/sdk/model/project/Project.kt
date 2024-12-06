@@ -1,5 +1,7 @@
 package org.akrck02.valhalla.core.sdk.model.project
 
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
 import org.akrck02.valhalla.core.sdk.model.team.Team
 import org.akrck02.valhalla.core.sdk.model.user.User
 import java.time.LocalDateTime
@@ -9,11 +11,16 @@ import java.time.LocalDateTime
  */
 @Suppress("unused")
 data class Project(
-    var id: String? = null,
+
+    @SerialName("_id") @Contextual var id: String? = null,
+    
     var name: String? = null,
     var description: String? = null,
     var owner: User? = null,
+
     var teams: MutableList<Team> = mutableListOf(),
-    var creationTime: LocalDateTime? = null,
-    var updateTime: LocalDateTime? = null,
+
+    @Contextual var creationTime: LocalDateTime? = null,
+    @Contextual var updateTime: LocalDateTime? = null
+
 )
