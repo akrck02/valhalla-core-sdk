@@ -8,15 +8,15 @@ import java.time.LocalDateTime
  */
 @Suppress("unused")
 data class Team(
-    var id: String?,
-    var name: String?,
-    var owner: User?,
-    var description: String?,
-    var profilePicturePath: String?,
+    var id: String? = null,
+    var name: String? = null,
+    var owner: User? = null,
+    var description: String? = null,
+    var profilePicturePath: String? = null,
 
     var projects: MutableList<Int> = mutableListOf(),
     var members: MutableList<User> = mutableListOf(),
 
-    var creationTime: LocalDateTime?,
-    var updateTime: LocalDateTime?
+    var creationTime: LocalDateTime? = null,
+    var updateTime: LocalDateTime? = null,
 )
