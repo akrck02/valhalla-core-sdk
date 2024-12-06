@@ -14,41 +14,43 @@ interface UserRepository {
      * Register a user
      * @param user The user to register
      */
-    suspend fun register(user: User ?)
+    suspend fun register(user: User?)
 
     /**
      * Get the user by id
      * @param id The user id
+     * @param secure If the sensible data must be hidden
      * @return The requested user
      */
-    suspend fun get(id : String ?) : User ?
+    suspend fun get(id: String?, secure: Boolean? = true): User?
 
     /**
      * Get the user by email
      * @param email The user email
+     * @param secure If the sensible data must be hidden
      * @return The requested user
      */
-    suspend fun getByEmail(email : String ?) : User ?
+    suspend fun getByEmail(email: String?, secure: Boolean? = true): User?
 
     /**
      * Update the user data
      * @param id The user id
      * @param user The new user data
      */
-    suspend fun update(id : String ?, user: User ?)
+    suspend fun update(id: String?, user: User?)
 
     /**
      * Update the profile picture for a user
      * @param id The user id
      * @param picture The profile picture to be set
      */
-    suspend fun updateProfilePicture(id : String ?, picture : ByteArray ?)
+    suspend fun updateProfilePicture(id: String?, picture: ByteArray?)
 
     /**
      * Delete the user
      * @param id
      */
-    suspend fun delete(id : String ?)
+    suspend fun delete(id: String?)
 
     /**
      * Login with a user in the service
@@ -56,7 +58,7 @@ interface UserRepository {
      * @param device The device that the user is using
      * @return The auth token
      */
-    suspend fun login(user: User ?, device : Device ?) : String?
+    suspend fun login(user: User?, device: Device?): String?
 
     /**
      * Login the platform with the auth token representing
@@ -64,11 +66,11 @@ interface UserRepository {
      * @param id The id of user that wants to log in
      * @param token The auth token used
      */
-    suspend fun loginWithAuth(id: String ?, token : String ?)
+    suspend fun loginWithAuth(id: String?, token: String?)
 
     /**
      * Validate the user account
      * @param code The validation code
      */
-    suspend fun validateAccount(code : String?)
+    suspend fun validateAccount(code: String?)
 }
