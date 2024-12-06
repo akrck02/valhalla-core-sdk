@@ -6,14 +6,14 @@ import java.time.LocalDateTime
  * This class represents a user in the app
  */
 data class User(
-    val id: String?,
-    var username: String? = null,
-    var email: String? = null,
-    var password: String? = null,
+    var id: String?,
+    var username: String?,
+    var email: String?,
+    var password: String?,
 
-    var validated: Boolean? = null,
-    var validationCode: String? = null,
+    var validated: Boolean?,
+    var validationCode: String?,
 
-    var profilePicturePath: String? = null,
-    var creationTime: LocalDateTime? = null,
+    var profilePicturePath: String?,
+    var creationTime: LocalDateTime?
 )

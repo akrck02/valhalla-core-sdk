@@ -9,13 +9,11 @@ import java.time.LocalDateTime
  */
 @Suppress("unused")
 data class Project(
-    val id: String?,
-    var name: String? = null,
-    var description: String? = null,
-    var owner: User? = null,
-
+    var id: String?,
+    var name: String?,
+    var description: String?,
+    var owner: User?,
     var teams: MutableList<Team> = mutableListOf(),
-
-    var creationTime: LocalDateTime? = null,
-    var updateTime: LocalDateTime? = null
+    var creationTime: LocalDateTime?,
+    var updateTime: LocalDateTime?
 )

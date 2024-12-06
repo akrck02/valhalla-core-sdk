@@ -8,9 +8,9 @@ import org.akrck02.valhalla.core.sdk.model.user.User
  */
 @Suppress("unused")
 data class Device(
-    val id: String?,
-    var user: User? = null,
-    var address: String? = null,
-    var userAgent: String? = null,
-    var token: String? = null
+    var id: String?,
+    var user: User?,
+    var address: String?,
+    var userAgent: String?,
+    var token: String?
 )
