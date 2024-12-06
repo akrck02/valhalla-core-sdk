@@ -13,8 +13,9 @@ interface UserRepository {
     /**
      * Register a user
      * @param user The user to register
+     * @return The id of the registered user
      */
-    suspend fun register(user: User?)
+    suspend fun register(user: User?): String
 
     /**
      * Get the user by id
@@ -22,7 +23,7 @@ interface UserRepository {
      * @param secure If the sensible data must be hidden
      * @return The requested user
      */
-    suspend fun get(id: String?, secure: Boolean? = true): User?
+    suspend fun get(id: String?, secure: Boolean? = true): User
 
     /**
      * Get the user by email
@@ -30,7 +31,7 @@ interface UserRepository {
      * @param secure If the sensible data must be hidden
      * @return The requested user
      */
-    suspend fun getByEmail(email: String?, secure: Boolean? = true): User?
+    suspend fun getByEmail(email: String?, secure: Boolean? = true): User
 
     /**
      * Update the user data
@@ -58,7 +59,7 @@ interface UserRepository {
      * @param device The device that the user is using
      * @return The auth token
      */
-    suspend fun login(user: User?, device: Device?): String?
+    suspend fun login(user: User?, device: Device?): String
 
     /**
      * Login the platform with the auth token representing

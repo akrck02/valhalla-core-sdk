@@ -12,15 +12,16 @@ interface ProjectRepository {
     /**
      * Register a new project
      * @param project The project to register
+     * @return The id of the registered project
      */
-    suspend fun register(project: Project?)
+    suspend fun register(project: Project?): String
 
     /**
      * Get a project by id
      * @param id The project id
      * @return The requested project
      */
-    suspend fun get(id: String?): Project?
+    suspend fun get(id: String?): Project
 
     /**
      * Get all the projects a user belongs to
