@@ -1,5 +1,6 @@
 package org.akrck02.valhalla.core.sdk.model.device
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.akrck02.valhalla.core.sdk.model.user.User
 
@@ -10,7 +11,7 @@ import org.akrck02.valhalla.core.sdk.model.user.User
 @Suppress("unused")
 @Serializable
 data class Device(
-    var id: String? = null,
+    @SerialName("_id") var id: String? = null,
     var user: User? = null,
     var address: String? = null,
     var userAgent: String? = null,
