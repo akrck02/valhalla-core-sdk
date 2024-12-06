@@ -1,5 +1,6 @@
 package org.akrck02.valhalla.core.sdk.model.project
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.akrck02.valhalla.core.sdk.model.team.Team
@@ -11,6 +12,7 @@ import org.akrck02.valhalla.core.sdk.model.user.User
 @Suppress("unused")
 @Serializable
 data class Project(
+    @Contextual
     @SerialName("_id") var id: String? = null,
     var name: String? = null,
     var description: String? = null,

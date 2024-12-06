@@ -1,6 +1,5 @@
 package org.akrck02.valhalla.core.sdk.model.user
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -8,7 +7,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class User(
-    @SerialName("_id") var id: String? = null,
+    var id: String? = null,
     var username: String? = null,
     var email: String? = null,
     var password: String? = null,
