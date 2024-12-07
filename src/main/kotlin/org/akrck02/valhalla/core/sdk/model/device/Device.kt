@@ -12,7 +12,7 @@ import org.akrck02.valhalla.core.sdk.model.user.User
 @Serializable
 data class Device(
     @SerialName("_id") var id: String? = null,
-    var user: User? = null,
+    var owner: User? = null,
     var address: String? = null,
     var userAgent: String? = null,
     var token: String? = null
