@@ -59,22 +59,16 @@ fun String.validatePassword() {
         message = "Password must have at least $MINIMUM_CHARACTERS_FOR_PASSWORD characters."
     )
 
+    takeIf { it.isLowercase().not().and(it.isUppercase().not()) } ?: throw ServiceException(
+        status = HttpStatusCode.BadRequest,
+        code = ErrorCode.InvalidPassword,
+        message = "Password must have at least one lowercase and uppercase character."
+    )
+
     takeIf { it.containsSpecialCharacters() } ?: throw ServiceException(
         status = HttpStatusCode.BadRequest,
         code = ErrorCode.InvalidPassword,
         message = "Password must have at least one special character."
-    )
-
-    takeIf { it.isLowercase().not() } ?: throw ServiceException(
-        status = HttpStatusCode.BadRequest,
-        code = ErrorCode.InvalidPassword,
-        message = "Password must have at least one uppercase character."
-    )
-
-    takeIf { it.isUppercase().not() } ?: throw ServiceException(
-        status = HttpStatusCode.BadRequest,
-        code = ErrorCode.InvalidPassword,
-        message = "Password must have at least one uppercase character."
     )
 
     takeIf { it.isAlphanumeric().not() } ?: throw ServiceException(
@@ -127,5 +121,5 @@ fun String.containsSpecialCharacters(): Boolean {
             this.contains("-")
 
 
-   // return this.matches(Regex("^(?=.*[@#\$*%^&+=])"))
+    // return this.matches(Regex("^(?=.*[@#\$*%^&+=])"))
 }
