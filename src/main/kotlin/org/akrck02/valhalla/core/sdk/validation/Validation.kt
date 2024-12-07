@@ -71,7 +71,7 @@ fun String.validatePassword() {
         message = "Password must have at least one special character."
     )
 
-    takeIf { it.isAlphanumeric().not() } ?: throw ServiceException(
+    takeIf { it.containsNumbers() } ?: throw ServiceException(
         status = HttpStatusCode.BadRequest,
         code = ErrorCode.InvalidPassword,
         message = "Password must have at least one number."
@@ -82,44 +82,22 @@ fun String.validatePassword() {
  * Get if a String is lowercase
  * @return true if it is, false otherwise
  */
-fun String.isLowercase(): Boolean {
-    return this.lowercase() == this
-}
-
+fun String.isLowercase(): Boolean = this.lowercase() == this
 
 /**
  * Get if a String is uppercase
  * @return true if it is, false otherwise
  */
-fun String.isUppercase(): Boolean {
-    return this.uppercase() == this
-}
+fun String.isUppercase(): Boolean = this.uppercase() == this
 
 /**
  * Get if a String contains numbers
  * @return true if it is, false otherwise
  */
-fun String.isAlphanumeric(): Boolean {
-    return this.matches(Regex("^(?=.*[0-9])"))
-}
+fun String.containsNumbers(): Boolean = this.contains(Regex("[0-9]+"))
 
 /**
  * Get if a String contains special characters
  * @return true if it is, false otherwise
  */
-fun String.containsSpecialCharacters(): Boolean {
-
-    return this.contains("@") ||
-            this.contains("#") ||
-            this.contains("?") ||
-            this.contains("¿") ||
-            this.contains("$") ||
-            this.contains("*") ||
-            this.contains("%") ||
-            this.contains("&") ||
-            this.contains("+") ||
-            this.contains("-")
-
-
-    // return this.matches(Regex("^(?=.*[@#\$*%^&+=])"))
-}
+fun String.containsSpecialCharacters(): Boolean = this.contains(Regex("[*?¿#¡!&]+"))
