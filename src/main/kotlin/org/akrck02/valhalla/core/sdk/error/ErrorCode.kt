@@ -21,6 +21,7 @@ enum class ErrorCode(val code: Int) {
     InvalidEmail(9),
     CannotCreateValidationCode(10),
     InvalidValidationCode(11),
+    NothingChanged(12),
 
     // 1000 --> 1999 | USER ERRORS
     UserAlreadyExists(1000),
