@@ -100,4 +100,4 @@ fun String.containsNumbers(): Boolean = this.contains(Regex("[0-9]+"))
  * Get if a String contains special characters
  * @return true if it is, false otherwise
  */
-fun String.containsSpecialCharacters(): Boolean = this.contains(Regex("[*?¿#¡!&]+"))
+fun String.containsSpecialCharacters(): Boolean = this.contains(Regex("[!@#$%^&*]+"))
