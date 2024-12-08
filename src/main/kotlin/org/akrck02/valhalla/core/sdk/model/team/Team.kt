@@ -1,8 +1,10 @@
 package org.akrck02.valhalla.core.sdk.model.team
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.akrck02.valhalla.core.sdk.model.user.User
+import org.bson.BsonType
+import org.bson.codecs.pojo.annotations.BsonId
+import org.bson.codecs.pojo.annotations.BsonRepresentation
 
 /**
  * This class represents a team in the app
@@ -10,7 +12,10 @@ import org.akrck02.valhalla.core.sdk.model.user.User
 @Suppress("unused")
 @Serializable
 data class Team(
-    @SerialName("_id") var id: String? = null,
+
+    @BsonId
+    @BsonRepresentation(BsonType.OBJECT_ID)
+    var id: String? = null,
     var name: String? = null,
     var owner: User? = null,
     var description: String? = null,

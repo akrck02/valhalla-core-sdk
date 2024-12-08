@@ -9,6 +9,7 @@ version = '1.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 test {
@@ -41,9 +42,14 @@ dependencies {
     // Tests
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
+    
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.2.1")
+
+
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.mongodb:bson:5.2.1")
 }
 
 
