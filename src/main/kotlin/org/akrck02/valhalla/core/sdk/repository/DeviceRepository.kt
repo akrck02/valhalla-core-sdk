@@ -33,4 +33,11 @@ interface DeviceRepository {
      */
     suspend fun getByAuth(userId: String?, token: String?): Device
 
+    /**
+     * Get all devices by user
+     * @param userId The user id
+     * @return The devices belonging to a user
+     */
+    suspend fun getAll(userId: String?): Device
+
 }
