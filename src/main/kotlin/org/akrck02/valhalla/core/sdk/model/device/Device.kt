@@ -9,7 +9,6 @@ import kotlinx.serialization.Serializable
 @Suppress("unused")
 @Serializable
 data class Device(
-    var id: String? = null,
     var address: String? = null,
     var userAgent: String? = null,
     var token: String? = null
