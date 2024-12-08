@@ -1,6 +1,7 @@
 package org.akrck02.valhalla.core.sdk.model.user
 
 import kotlinx.serialization.Serializable
+import org.akrck02.valhalla.core.sdk.model.device.Device
 
 /**
  * This class represents a user in the app
@@ -14,5 +15,7 @@ data class User(
     var validated: Boolean? = null,
     var validationCode: String? = null,
     var profilePicturePath: String? = null,
-    var creationTime: Long? = null
+    var creationTime: Long? = null,
+
+    var devices: MutableList<Device> = mutableListOf()
 )
