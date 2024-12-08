@@ -38,6 +38,6 @@ interface DeviceRepository {
      * @param userId The user id
      * @return The devices belonging to a user
      */
-    suspend fun getAll(userId: String?): Device
+    suspend fun getAll(userId: String?): List<Device>
 
 }
