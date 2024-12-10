@@ -10,8 +10,8 @@ group = providers.gradleProperty("organization").getOrElse("")
 version = providers.gradleProperty("valhalla.core.sdk.version").getOrElse("")
 
 val jdkVersion: Int = providers.gradleProperty("jdk.version").getOrElse("").toInt()
-val mavenServerName: String = providers.gradleProperty("maven.server.name").getOrElse("")
-val mavenServerUrl: String = providers.gradleProperty("maven.server.url").getOrElse("")
+val mavenServerName: String = localProperties.getProperty("maven.server.name")
+val mavenServerUrl: String = localProperties.getProperty("maven.server.url")
 val mavenServerUser: String = localProperties.getProperty("maven.server.user")
 val mavenServerPassword: String = localProperties.getProperty("maven.server.password")
 
