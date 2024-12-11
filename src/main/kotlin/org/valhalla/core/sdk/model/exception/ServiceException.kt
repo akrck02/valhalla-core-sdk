@@ -1,12 +1,10 @@
-package org.akrck02.valhalla.core.sdk.model.exception
+package org.valhalla.core.sdk.model.exception
 
 import kotlinx.serialization.Serializable
-import org.akrck02.valhalla.core.sdk.error.ErrorCode
-import org.akrck02.valhalla.core.sdk.model.http.HttpStatusCode
+import org.valhalla.core.sdk.error.ErrorCode
+import org.valhalla.core.sdk.model.http.HttpStatusCode
 
-/**
- * This class represents an exception in the service
- */
+/** This class represents an exception in the service. */
 @Suppress("unused")
 @Serializable
 class ServiceException(

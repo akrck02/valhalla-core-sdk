@@ -1,15 +1,15 @@
-package org.akrck02.valhalla.core.sdk.validation
+package org.valhalla.core.sdk.validation
 
-import org.akrck02.valhalla.core.sdk.error.ErrorCode
-import org.akrck02.valhalla.core.sdk.model.exception.ServiceException
-import org.akrck02.valhalla.core.sdk.model.http.HttpStatusCode
+import org.valhalla.core.sdk.error.ErrorCode
+import org.valhalla.core.sdk.model.exception.ServiceException
+import org.valhalla.core.sdk.model.http.HttpStatusCode
 
 const val MINIMUM_CHARACTERS_FOR_PASSWORD = 16
 const val MINIMUM_CHARACTERS_FOR_EMAIL = 5
 
 /**
- * Validate string as an email to match the requirements
- * @throws ServiceException if the email is invalid
+ * Validate a [String] as an email to match the requirements
+ * throws [ServiceException] if the email is invalid.
  */
 @Suppress("unused")
 fun String.validateEmail() {
@@ -41,8 +41,8 @@ fun String.validateEmail() {
 }
 
 /**
- * Validate string as a password to match the requirements
- * @throws ServiceException if the password is invalid
+ * Validate a [String] as a password to match the requirements,
+ * throws [ServiceException] if the password is invalid.
  */
 @Suppress("unused")
 fun String.validatePassword() {
@@ -78,26 +78,14 @@ fun String.validatePassword() {
     )
 }
 
-/**
- * Get if a String is lowercase
- * @return true if it is, false otherwise
- */
+/** Returns if a [String] is lowercase. */
 fun String.isLowercase(): Boolean = this.lowercase() == this
 
-/**
- * Get if a String is uppercase
- * @return true if it is, false otherwise
- */
+/** Returns if a [String] is uppercase. */
 fun String.isUppercase(): Boolean = this.uppercase() == this
 
-/**
- * Get if a String contains numbers
- * @return true if it is, false otherwise
- */
+/** Returns if a [String] contains numbers. */
 fun String.containsNumbers(): Boolean = this.contains(Regex("[0-9]+"))
 
-/**
- * Get if a String contains special characters
- * @return true if it is, false otherwise
- */
+/** Returns if a [String] contains special characters. */
 fun String.containsSpecialCharacters(): Boolean = this.contains(Regex("[¡!@#$%^&¿?*]+"))

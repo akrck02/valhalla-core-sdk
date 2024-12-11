@@ -1,4 +1,4 @@
-package org.akrck02.valhalla.core.sdk.error
+package org.valhalla.core.sdk.error
 
 /**
  * This enumeration represents the errors

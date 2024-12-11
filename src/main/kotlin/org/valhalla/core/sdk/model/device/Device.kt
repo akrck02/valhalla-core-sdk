@@ -1,10 +1,10 @@
-package org.akrck02.valhalla.core.sdk.model.device
+package org.valhalla.core.sdk.model.device
 
 import kotlinx.serialization.Serializable
 
 /**
  * This class represents a user device logged in the platform
- * and the corresponding token
+ * and the corresponding token.
  */
 @Suppress("unused")
 @Serializable

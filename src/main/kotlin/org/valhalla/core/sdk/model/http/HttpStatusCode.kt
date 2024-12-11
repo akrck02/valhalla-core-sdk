@@ -1,8 +1,6 @@
-package org.akrck02.valhalla.core.sdk.model.http
+package org.valhalla.core.sdk.model.http
 
-/**
- * This enumeration represents the HTTP protocol status codes
- */
+/** This enumeration represents the HTTP protocol status codes. */
 @Suppress("unused")
 enum class HttpStatusCode(val code: Int) {
     Continue(100),
